@@ -1,0 +1,306 @@
+<!--
+  Generated template for the ListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title style="background:#488aff">List</ion-title>
+    </ion-navbar>
+</ion-header>
+.
+
+<ion-content  style="background-color: whitesmoke">
+     <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+    pullMin="150">
+    </ion-refresher-content>
+  </ion-refresher> -->
+    
+
+    <div>
+        <ion-segment [(ngModel)]="List" style="width:100%">
+            <ion-segment-button value="list" style="border-radius:0%">
+                List
+            </ion-segment-button>
+            <ion-segment-button value="information" style="border-radius:0%">
+                Info
+            </ion-segment-button>
+            <ion-segment-button value="item" style="border-radius:0%">
+                Items
+            </ion-segment-button>
+            <ion-segment-button value="equipment" style="border-radius:0%">
+                Equipment
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+
+    <div [ngSwitch]="List">
+        <ion-list *ngSwitchCase="'list'">
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label>Day</ion-label>
+                            <ion-input type="text" [(ngModel)]="dayVar"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label>Wk</ion-label>
+                            <ion-input type="text" [(ngModel)]="weekVar"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-item>
+                        <ion-label>User</ion-label>
+                        <ion-select (ionChange)=userSelected($event) [(ngModel)]="driver">
+                            <ion-option *ngFor="let user of userArray" [value]="user.name">{{user.name}}
+                            </ion-option>
+                        </ion-select>
+
+                    </ion-item>
+                </ion-row>
+
+                <!-- <ion-row>
+                    <div style="height : 50vh; width: 100%">
+                        <ag-grid-angular #agGrid class="ag-blue" [gridOptions]="listTable" (rowClicked)="listTableSelection($event)" style="width: 100%;height: 100%" *ngIf="ListTableFlag">
+
+                        </ag-grid-angular>
+                    </div>
+                </ion-row> -->
+                <ion-row style="border-bottom: 1px solid lightgrey">
+                    <!--<ion-item>-->
+                    <!--<ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="today"></ion-datetime>-->
+                    <!--<ion-row>-->
+                    <ion-col>
+                        <ion-datetime displayFormat="YYYY-MM-DD" [ngModel]="todayISO" (ngModelChange)="dateChange($event);"></ion-datetime>
+                        <!--<ion-input type="date" [ngModel]="today | date:'yyyy-MM-dd'" (ngModelChange)="dateChange($event);"></ion-input>-->
+                    </ion-col>
+                    <ion-col>
+                        <ion-select placeholder='Options' (ionChange)='optionChange($event)' class="optionSelect" [(ngModel)]="defaultOption">
+                            <ion-option *ngFor="let option of options" [value]="option['name']">{{option['name']}}</ion-option>
+                        </ion-select>
+                    </ion-col>
+                    <!--</ion-row>-->
+
+                    <!--</ion-item>-->
+                    <!--<ion-item>
+                            
+                        </ion-item>-->
+                </ion-row>
+                <ion-row>
+                    <ion-col col-3><p style="color: black"> {{woQuantity}} results</p></ion-col>
+<!-- ?<ion-col style="margin-left: 50px"><button small ion-button clear>Edit</button></ion-col> -->
+                </ion-row>
+            </ion-grid>
+            <ion-list [reorder]="true" (ionItemReorder)="reorderItems($event);" style="padding:10px; margin-top:-20px">
+                <button expandable no-lines ion-item detail-none *ngFor="let item of driverArray" style="border: 1px solid purple; margin-bottom: 0px;" (click)="listTableSelection(item)" (ionItemReorder)="reorderItems($event);">
+                        <ion-row>
+                            <ion-col col-6>
+                                 <p style="font-size:smaller; color: black"> Seq: {{item.deliverySeq}}</p> 
+                            </ion-col>
+                            <ion-col col-6><p *ngIf="item.open" style="font-size:smaller; color: black"> Open 
+                                <p *ngIf="!item.open" style="font-size:smaller; color: black"> Closed </ion-col>
+                        </ion-row>
+                        <ion-row>
+                                <p style="font-size:bigger; color: black"> {{item.woName}}</p>
+                        </ion-row>
+                        <!-- <ion-row>
+                                <p style="font-size:smaller; color: black">Address: {{item.woAddress}}</p>
+                        </ion-row> -->
+                        <!-- <ion-row>
+                                <p style="font-size:smaller; color: black">Phone: {{item.phone}}</p>
+                        </ion-row> -->
+                </button>
+                    <button ion-button clear style="color:darkgrey; margin-left:33%" (click)="scrollToTop()">Back To Top</button>
+            </ion-list>
+        </ion-list>
+
+        <!-- <ion-list *ngSwitchCase="'wo'" no-lines>
+            <button ion-item *ngFor="let item of driverArray" style="border: 1px solid lightgrey; margin-bottom: 0px;" (click)="listTableSelection(item)">
+                        <ion-grid>
+                            <ion-row >
+                                <p style="font-size:smaller"> Seq: {{item.deliverySeq}}</p>
+                            </ion-row>
+                            <ion-row>
+                                    <p style="font-size:smaller">Customer: {{item.woName}}</p>
+                            </ion-row>
+                            <ion-row>
+                                    <p style="font-size:smaller">Address: {{item.woAddress}}</p>
+                            </ion-row>
+                            <ion-row>
+                                    <p style="font-size:smaller">Phone: {{item.phone}}</p>
+                            </ion-row>
+                        </ion-grid>
+                    </button>
+        </ion-list> -->
+
+        <ion-list *ngSwitchCase="'information'">
+            <ion-grid>
+                <ion-row>
+                    <ion-item>
+                        <ion-label color='primary'>Lastname</ion-label>
+                        <ion-input type="text" [(ngModel)]="workOrderInfoOfSelectedCustomer['woName']"></ion-input>
+                    </ion-item>
+                </ion-row>
+                <ion-row>
+                    <ion-item>
+                        <ion-label color='primary'>Firstname</ion-label>
+                        <ion-input type="text" [(ngModel)]="selectedCustomerInformation['firstName']"></ion-input>
+                    </ion-item>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-10>
+                        <ion-item>
+                            <ion-label color='primary' stacked>Address</ion-label>
+                            <ion-textarea type="text" [(ngModel)]="workOrderInfoOfSelectedCustomer['woAddress']"></ion-textarea>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col><button ion-button (click)="showMap()"><ion-icon name='navigate'></ion-icon></button></ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                        <ion-label color='primary'>City</ion-label>
+                        <ion-input type="text" [(ngModel)]="selectedCustomerInformation['city']"></ion-input>
+                    </ion-item>
+                    </ion-col>
+                <!-- <ion-col col-2>
+                    <ion-row><P>OPen</P></ion-row>
+                    <ion-item>
+                        <ion-label floating>Open</ion-label>
+                        <ion-checkbox [(ngModel)]="workOrderInfoOfSelectedCustomer['open']">Open</ion-checkbox>
+                    </ion-item>
+                </ion-col> -->
+                </ion-row>
+                <ion-row>
+                    <ion-col col-10>
+                        <ion-item>
+                            <ion-label color='primary'>Home</ion-label>
+                            <ion-input type="text" [(ngModel)]="workOrderInfoOfSelectedCustomer['phone']"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col>
+                        <div *ngIf="workOrderInfoOfSelectedCustomer['phone']">
+                            <a href="tel: {{workOrderInfoOfSelectedCustomer['phone']}}"><button ion-button><ion-icon name="call"> </ion-icon></button> </a>
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <!--Every customer has null value in thier cell
+                <ion-row>
+                    <ion-item>
+                        <ion-label color='primary'>Cell</ion-label>
+                        <ion-input type="text" [(ngModel)]="workOrderInfoOfSelectedCustomer['cell']"></ion-input>
+                    </ion-item>
+                </ion-row>-->
+                <!--<ion-row>
+                    <ion-item>
+                        <ion-label color='primary'>Work</ion-label>
+                        <ion-input type="text" [(ngModel)]="selectedCustomerInformation['workPhone']"></ion-input>
+                    </ion-item>
+                </ion-row>-->
+                <ion-row>
+                    <ion-item>
+                        <ion-label color='primary'>Date</ion-label>
+                         <!-- <ion-input type="text" [value]="workOrderInfoOfSelectedCustomer['dateWanted'] | date" ngModel></ion-input>  -->
+                         <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MMM DD YYYY" [(ngModel)]="newDate"></ion-datetime>                            
+                       <!-- <ion-input type="text" [value]="workOrderInfoOfSelectedCustomer['dateWanted'] | date" ngModel></ion-input>  -->
+<!-- </ion-datetime> -->
+                    </ion-item>
+                </ion-row>
+                <!-- I felt we can remove assigned to since logged in driver name and assigned to are the same-->
+                <!--<ion-row>
+                    <ion-item>
+                        <ion-label color='primary'>Assigned</ion-label>
+                        <ion-input type="text" [(ngModel)]="workOrderInfoOfSelectedCustomer['assignedTo']"></ion-input>
+                    </ion-item>
+                </ion-row>-->
+                <ion-row>
+                    <ion-item>
+                        <p style="color:#488aff">Email</p>
+                        <p><a href="mailto: {{customerEmail}}">{{customerEmail}}</a></p>
+                          <!-- <ion-input type="email" [(ngModel)]="customerEmail"></ion-input>   -->
+                    </ion-item>
+                </ion-row>
+                <ion-row>
+                    <ion-item no-lines class="item item-text-wrap">
+                        <ion-label color='primary' stacked>Instructions</ion-label>
+                        <ion-textarea type="text" [(ngModel)]="workOrderInfoOfSelectedCustomer['instructions']" rows="5" ></ion-textarea>
+                    </ion-item>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-6><button ion-button block (click)="saveWO()" style="border-radius:0%">Save WO</button></ion-col>
+                    <ion-col col-6><button ion-button block color="secondary" (click)='signature()' style="border-radius:0%">Signature</button></ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </ion-list>
+        <ion-list padding *ngSwitchCase="'item'">
+            <!-- <div style="height:50vh">
+                <ag-grid-angular #agGrid class="ag-blue" [gridOptions]="itemTable" (rowClicked)="itemTableSelection($event)" style="width:100% ;height:100%" *ngIf="itemTableFlag"></ag-grid-angular>
+            </div> -->
+
+            <div>
+                <button ion-item no-lines *ngFor="let item of itemArray" style="border: 1px solid lightgrey; margin-bottom: 5px" [highlight]="itemTableSelectVal.ID == item.ID" (click)="itemTableSelection(item)" >
+                    <ion-grid>
+                        <ion-row>
+                            <p style="font-size:smaller"><strong>Description:</strong> {{item.description}}</p>
+                        </ion-row>
+                        <ion-row>
+                            <p style="font-size:smaller"><strong>Code:</strong> {{item.productCode}}       <strong>Quantity:</strong> {{item.quantity}} </p>
+                        </ion-row>
+                    </ion-grid>
+                </button>
+            </div>
+
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <h2 style="padding-left:120px">Total: {{total | currency:'USD':true}}</h2>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col><button ion-button block (click)="addNewItem()" color='secondary'>Add</button></ion-col>
+                    <ion-col><button ion-button block color="danger" (click)="deleteSelectedItem()">Delete</button></ion-col>
+                    <ion-col><button ion-button block color="dark" (click)="updateInventory()">Update</button></ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col><button ion-button block (click)='email()' style="background:purple">Email</button></ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col><button ion-button block (click)='review()'>Review</button></ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col><button ion-button block (click)='complete()'>Complete</button></ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-list>
+        <ion-list padding *ngSwitchCase="'equipment'">
+            <!-- <div style="height:50vh">
+                <ag-grid-angular #agGrid class="ag-blue" (rowClicked)="equipmentTableSelection($event)" [gridOptions]="equipmentTable" style="width: 100%;height: 100%" *ngIf="equipmentTableFlag"></ag-grid-angular>
+            </div> -->
+            <button ion-item no-lines *ngFor="let item of equipmentArray" style="border: 1px solid lightgrey; margin-bottom: 5px" [highlight]="equipmentTableSelectedValue.ID == item.ID" (click)="equipmentTableSelection(item)">
+                    <ion-grid>
+                        <ion-row>
+                            <p style="font-size:smaller"><strong>Description:</strong> {{item.description}}</p>
+                        </ion-row>
+                        <ion-row>
+                            <p style="font-size:smaller"><strong>Status:</strong>{{item.status}} <strong>Serial Num:</strong>{{item.serialNum}} <strong>Model:</strong>{{item.model}}</p>
+                        </ion-row>
+                    </ion-grid>
+                </button>
+            <ion-row>
+                <ion-col><button ion-button block (click)="replace()">Replace</button></ion-col>
+                <ion-col><button ion-button block>Add</button></ion-col>
+                <ion-col><button ion-button block>Delete</button></ion-col>
+            </ion-row>
+        </ion-list>
+    </div>
+</ion-content>

@@ -1,0 +1,81 @@
+<!--
+  Generated template for the CustomerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+
+    <ion-toolbar>
+        <ion-title start>Contacts</ion-title>
+        <ion-buttons no-lines end>
+            <button ion-button clear icon-only (click)="navToNewContact()"><ion-icon name="add"></ion-icon></button>
+        </ion-buttons>
+    </ion-toolbar>
+
+
+</ion-header>
+
+
+<ion-content>
+    <ion-searchbar (ionInput)="search($event)" start>
+    </ion-searchbar>
+    <ion-item-group>
+        <ion-item-divider color="light" *ngIf="customersABC.other.length > 0">#</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.other" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.a.length > 0">A</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.a" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.b.length > 0">B</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.b" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.c.length > 0">C</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.c" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.d.length > 0">D</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.d" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.e.length > 0">E</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.e" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.f.length > 0">F</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.f" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.g.length > 0">G</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.g" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.h.length > 0">H</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.h" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.i.length > 0">I</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.i" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.j.length > 0">J</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.j" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.k.length > 0">K</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.k" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.l.length > 0">L</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.l" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.m.length > 0">M</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.m" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.n.length > 0">N</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.n" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.o.length > 0">O</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.o" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.p.length > 0">P</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.p" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.q.length > 0">Q</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.q" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.r.length > 0">R</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.r" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.s.length > 0">S</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.s" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.t.length > 0">T</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.t" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.u.length > 0">U</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.u" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.v.length > 0">V</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.v" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.w.length > 0">W</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.w" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.x.length > 0">X</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.x" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.y.length > 0">Y</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.y" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+        <ion-item-divider color="light" *ngIf="customersABC.z.length > 0">Z</ion-item-divider>
+        <button ion-item *ngFor="let item of customersABC.z" (click)="navToCusInfo(item)">{{item.firstName}} {{item.lastName}}</button>
+    </ion-item-group>
+
+</ion-content>

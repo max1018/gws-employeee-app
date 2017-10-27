@@ -1,0 +1,102 @@
+<!--
+  Generated template for the NewEventPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{customer.firstName}} {{customer.lastName}}'s New Event</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+
+    <!-- <ion-item>
+        <ion-label> Goal Selected:</ion-label>
+        <ion-select placeholder="Choose Goal" [(ngModel)]="selectedGoal">
+            <ion-option *ngFor="let item of customerGoals" value="{{item.goalName}}">{{item.goalName}}</ion-option>
+        </ion-select>
+    </ion-item>
+     -->
+    <h1 *ngIf="!selectedGoal">To make a new event you must first select a goal</h1>
+    <ion-row style="margin-top: -10px; width:100%" *ngIf="!selectedGoal">
+        <ion-item no-lines>
+            <ion-scroll scrollX="true" scroll-avatar>
+                <button ion-button outline *ngFor="let item of customerGoals" class="scroll-item" (click)="selectGoal(item)">{{item.goalName}}</button>
+                <button ion-button (click)="newGoalButton()" style="margin-left:-3px">New Goal</button>
+            </ion-scroll>
+        </ion-item>
+    </ion-row>
+    <div *ngIf="selectedGoal">
+        <ion-row padding>
+            <ion-item>
+                <ion-label floating style="color:purple">Current Goal</ion-label>
+                <ion-input [(ngModel)]="selectedGoal.goalName"></ion-input>
+            </ion-item>
+        </ion-row>
+        <ion-row padding style="margin-top:-10px">
+            <ion-item>
+                <ion-label style="color:purple">Select a department</ion-label>
+                <ion-select placeholder="Select One" [(ngModel)]="dept" (ionChange)="getEventTypes()">
+                    <ion-option value="CSR">CSR</ion-option>
+                    <ion-option value="RSR">RSR</ion-option>
+                    <ion-option value="SSR">SSR</ion-option>
+                    <ion-option value="BWS">BW Sales</ion-option>
+                    <ion-option value="SS">System Sales</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-row>
+        <ion-row padding style="margin-top: -25px">
+            <ion-item>
+                <ion-label style="color: purple">Current Division</ion-label>
+                <ion-input [(ngModel)]="div"></ion-input>
+            </ion-item>
+            <!-- <p>Your current division is <strong>{{div}}</strong></p> -->
+        </ion-row>
+        <div *ngIf="!selectedEvent">
+            <h1>Select an event type</h1>
+            <ion-row style="width:100%">
+                <ion-item no-lines>
+                    <ion-scroll scrollX="true" scroll-avatar>
+                        <button ion-button outline *ngFor="let item of eventList" class="scroll-item" (click)="selectEvent(item)">{{item.eventName}}</button>
+                        <!-- <button ion-button (click)="newGoalButton()" style="margin-left:-3px">New Goal</button> -->
+                    </ion-scroll>
+                </ion-item>
+            </ion-row>
+        </div>
+        <div padding *ngIf="selectedEvent" style="margin-top: -30px; width: 100%">
+            <ion-row>
+                <ion-item>
+                    <ion-label style="color: purple">Event Name</ion-label>
+                    <ion-input [(ngModel)]="selectedEvent.eventName"></ion-input>
+                </ion-item>
+            </ion-row>
+            <ion-row>
+                <!-- <p>Your event type is <strong>{{selectedEvent.eventName}}</strong></p> -->
+                <ion-item>
+                    <ion-label style="color: purple">Event Description</ion-label>
+                    <ion-input [(ngModel)]="selectedEvent.description"></ion-input>
+                </ion-item>
+            </ion-row>
+            <!-- <p>Event Discription: {{selectedEvent.description}}</p> -->
+            <ion-row>
+                <ion-item>
+                    <ion-label style="color: purple">Expected Date:</ion-label>
+                    <ion-input type="date" [ngModel]="dateExpected | date:'yyyy-MM-dd'"></ion-input>
+                </ion-item>
+            </ion-row>
+            <ion-row style="margin-top: 15px">
+                <ion-item no-lines>
+                    <ion-label style="color: purple"> Notes:</ion-label>
+                    <ion-textarea [(ngModel)]="notes" style="border: 1px solid black; height:200px"></ion-textarea>
+                </ion-item>
+            </ion-row>
+            <button ion-button block (click)="createEvent()">Create Event</button>
+        </div>
+    </div>
+</ion-content>

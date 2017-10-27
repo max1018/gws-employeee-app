@@ -1,0 +1,128 @@
+<!--
+  Generated template for the AddItemPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Add Item</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content id="scroll" >
+
+    <ion-grid>
+        <ion-list style="border: 1px solid purple; padding-bottom:3px">
+            <ion-row > 
+                <ion-col >
+                    <ion-item>
+                        <ion-label floating style="color:purple">Product Code</ion-label>
+                        <ion-input type="text" [value]="newProductToAdd['productCode']" ngModel></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col >
+                    <ion-item>
+                        <ion-label floating style="color:purple">Quantity</ion-label>
+                        <ion-input type="text" [(ngModel)]="newProductToAdd['quantity']" (ionChange)="getPrice()"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                    <ion-label floating style="color:purple">Price Per</ion-label>
+                    <ion-input type="text" [(ngModel)]="newProductToAdd['price']"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col >
+                    <ion-item>
+                    <ion-label floating style="color:purple">Total</ion-label>
+                    <ion-input type="text" [(ngModel)]="newProductToAdd['charge']"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <button ion-button (click)="addNewItem()" block small>Add</button>
+                </ion-col>
+            </ion-row>
+            <ion-row style="padding:0%">
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating style="color:purple">Description</ion-label>
+                        <ion-input type="text" [value]="newProductToAdd['description']" ngModel></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-list>
+        <form #searchQuery=ngForm (ngSubmit)="ProductSearch(searchQuery.value)" style="border: 1px solid purple; margin-top:-27px">
+            <ion-list>
+                <ion-row>
+                    <h1>Search Box</h1>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-input [(ngModel)]="defaultCode" name="code" clearInput ngModel></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col>
+                        <ion-item>
+                            <ion-input placeholder="Supplier Code" name="supplier" clearInput ngModel></ion-input>
+                        </ion-item>
+                    </ion-col>
+
+                </ion-row>
+
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-input placeholder="Keyword" name="keyword" clearInput ngModel></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col>
+                        <button ion-button type="submit" small block>Search</button>
+                    </ion-col>
+                </ion-row>
+            </ion-list>
+        </form>
+        <ion-row>
+            <ion-item>
+                <ion-label>Category</ion-label>
+                <ion-select (ionChange)="catagorySelect($event)">
+                    <ion-option *ngFor='let cat of catagoryArray'>{{cat.category}}</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-row>
+        <ion-row>
+            <ion-item>
+                <ion-label>Group</ion-label>
+                <ion-select [(ngModel)]="group" (ionChange)="groupSelect($event)">
+                    <ion-option *ngFor='let group of groupArray'>{{group.groupName}}</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-row>
+        <h1 style="margin-top:-4px">Results</h1>
+        <ion-row style="max-height:40vh; margin-top:-8px">
+            <div style="width :100%">
+                <button ion-item no-lines detail-none *ngFor="let item of productArray" style="border: 1px solid lightgrey; margin-bottom: 5px" (click)="productTableSelection(item)">
+                            <ion-grid>
+                                <ion-row>
+                                    <p style="font-size:smaller;"><strong>Name: </strong>{{item.description}}</p>
+                                </ion-row>
+                                <ion-row>
+                                    <p style="font-size:smaller"><strong>Code:</strong> {{item.productCode}}       <strong>Brand:</strong> {{item.brand}}</p>
+                                </ion-row>
+                            </ion-grid>
+                        </button>
+                <!-- <button ion-button no-lines clear (click)="backToTop()">Back To Top</button> -->
+                <!-- <ag-grid-angular #agGrid class="ag-blue" [gridOptions]="productTable" (rowClicked)="productTableSelection($event)" style="height: 100%;width: 100%" *ngIf="productTableFlag">
+
+                </ag-grid-angular> -->
+            </div>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>

@@ -1,5 +1,14 @@
 {
   "name": "customerRelationsApp",
-  "app_id": "",
-  "type": "ionic-angular"
+  "app_id": "bd3c8093",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  },
+  "proxies": [
+{
+"path": "maps/api/directions/json?origin=75+9th+Ave+New+York,+NY&destination=MetLife+Stadium+1+MetLife+Stadium+Dr+East+Rutherford,+NJ+07073&departure_time=1541202457&traffic_model=best_guess&key=AIzaSyCDaq7O2Z_xE2TeADcvhppJgKFJTnERFgs",
+"proxyUrl": "http://maps.google.com"
+}
+]
 }

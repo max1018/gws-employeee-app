@@ -1,0 +1,41 @@
+<!--
+  Generated template for the SwitchGuidePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title> Swap {{currentEvent.event.eventGuide}} for...</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-grid>
+        <ion-row>
+            <ion-item>
+                <ion-label floating>Current Guide</ion-label>
+                <ion-input [ngModel]="currentEvent.event.eventGuide"></ion-input>
+            </ion-item>
+        </ion-row>
+        <ion-row style="margin-top:40%">
+            <h1>Select a replacement guide...</h1>
+        </ion-row>
+        <ion-row>
+            <ion-select placeholder="Select One" style="width:300px" [(ngModel)]="newGuide">
+                <ion-option *ngFor="let item of salesArray" value="{{item}}">{{item}}</ion-option>
+            </ion-select>
+        </ion-row>
+        <ion-row>
+            <button clear ion-button (click)="confirmButton()">Confirm</button>
+        </ion-row>
+    </ion-grid>
+
+
+
+
+</ion-content>

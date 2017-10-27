@@ -1,0 +1,127 @@
+<!--
+  Generated template for the MarketingInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{customer.firstName}} {{customer.lastName}}'s Marketing Info</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <h1 padding>Marketing Info</h1>
+    <div style="border: 1px soild purple; margin-right:20px">
+        <ion-row>
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label>BW</ion-label>
+                    <ion-checkbox color="yellow" [(ngModel)]="profile.pad_BW"></ion-checkbox>
+                </ion-item>
+            </ion-col>
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label>Builder Ref</ion-label>
+                    <ion-checkbox [(ngModel)]="profile.builderRef"></ion-checkbox>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label>Door Knock</ion-label>
+                    <ion-checkbox [(ngModel)]="profile.doorKnock"></ion-checkbox>
+                </ion-item>
+            </ion-col>
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label>Event</ion-label>
+                    <ion-checkbox [(ngModel)]="profile.event"></ion-checkbox>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label>Mailer</ion-label>
+                    <ion-checkbox [(ngModel)]="profile.pad_Mailer"></ion-checkbox>
+                </ion-item>
+            </ion-col>
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label>Publication</ion-label>
+                    <ion-checkbox [(ngModel)]="profile.pad_NwsPpr"></ion-checkbox>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label>Phone Book</ion-label>
+                    <ion-checkbox [(ngModel)]="profile.pad_PhBk"></ion-checkbox>
+                </ion-item>
+            </ion-col>
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label>Prev Customer</ion-label>
+                    <ion-checkbox [(ngModel)]="profile.pad_PrevCust"></ion-checkbox>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label>Referral</ion-label>
+                    <ion-checkbox [(ngModel)]="profile.pad_Ref"></ion-checkbox>
+                </ion-item>
+            </ion-col>
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label>Radio or TV</ion-label>
+                    <ion-checkbox [(ngModel)]="profile.pad_Radio"></ion-checkbox>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label>Walk In</ion-label>
+                    <ion-checkbox [(ngModel)]="profile.pad_Walkin"></ion-checkbox>
+                </ion-item>
+            </ion-col>
+            <ion-col col-6>
+                <ion-item>
+                    <ion-label>Web</ion-label>
+                    <ion-checkbox [(ngModel)]="profile.pad_Web"></ion-checkbox>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </div>
+    <h1>Community Connection</h1>
+    <div style="border: 1px solid purple;padding:10px">
+        <ion-row>
+            <ion-item style="margin-top:-10px">
+                <ion-label floating>Platt</ion-label>
+                <ion-input [(ngModel)]="profile.platt"></ion-input>
+            </ion-item>
+        </ion-row>
+        <ion-row>
+            <ion-item>
+                <ion-label floating>Employment</ion-label>
+                <ion-input [(ngModel)]="profile.employment"></ion-input>
+            </ion-item>
+        </ion-row>
+        <ion-row>
+            <ion-item>
+                <ion-label floating>Church</ion-label>
+                <ion-input [(ngModel)]="profile.church"></ion-input>
+            </ion-item>
+        </ion-row>
+    </div>
+    <button color="secondary" ion-button block (click)="saveButton()">Save</button>
+</ion-content>

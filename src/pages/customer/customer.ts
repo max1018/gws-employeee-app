@@ -26,13 +26,15 @@ customersABC: any;
     this.customers = this._emp.getMyCustomers();
   
     console.log(this.customers)
-    //this.alphabetDivider();
+    this.alphabetDivider();
   }
   
   ionViewDidLoad() {
     
   }
 
+  //This function just organizes the customer into array by the first letter of thier names and if it can't determine a name it 
+  //puts the name into the other array
   alphabetDivider(){
     this.customersABC = 
       {
@@ -44,15 +46,18 @@ customersABC: any;
 for(let i = 0; i < this.customers.length;i++){
 let firstLetter: string;
 let params: any;
-  if(this.customers[i].firstName[0]){
+  if(this.customers[i].firstName && this.customers[i].firstName[0]){
     firstLetter = this.customers[i].firstName[0];
     params = firstLetter.toUpperCase();
   } else{
-    firstLetter = "Empty";
-    firstLetter = this.customers[i].lastName[0];
+
+    if(this.customers[i].firstName ){
+      firstLetter = "Empty";
+      firstLetter = this.customers[i].lastName[0];
+    }
     // console.log("FALSE SCENARIO")
     // console.log(this.customers[i].lastName)
-    params = firstLetter.toUpperCase();
+    //params = firstLetter.toUpperCase();
   }
 
   
@@ -199,21 +204,19 @@ let params: any;
 
  
      
-   // console.log(this.customersABC)
+   
 }
 
   }
-//  search(ev: any){
-//     let params = ev.target.value;
 
-//  }
-
+//This function Navigates to the Customer Info Page
  navToCusInfo(item){
    console.log(item)
 this._emp.setSelectedCustomer(item);
 this.navCtrl.push(CustomerInfoPage);
  }
 
+ //This function navigates you to the new contact page
  navToNewContact(){
    this.navCtrl.setRoot(NewContactPage)
  }

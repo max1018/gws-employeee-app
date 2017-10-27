@@ -1,0 +1,142 @@
+<!--
+  Generated template for the ProfileInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{customer.firstName}} {{customer.lastName}}'s Profile</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div style="border: 1px solid purple">
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label floating style="color:purple">Hardness</ion-label>
+                    <ion-input [(ngModel)]="profile.hardness"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item>
+                    <ion-label floating style="color:purple">Iron</ion-label>
+                    <ion-input [(ngModel)]="profile.iron"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label floating style="color:purple">Tds</ion-label>
+                    <ion-input [(ngModel)]="profile.tds"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item>
+                    <ion-label floating style="color:purple">Chlorine</ion-label>
+                    <ion-input [(ngModel)]="profile.chlorine"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label floating style="color:purple">Tannin</ion-label>
+                    <ion-input [(ngModel)]="profile.tannin"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item>
+                    <ion-label floating style="color:purple">Nitrate</ion-label>
+                    <ion-input [(ngModel)]="profile.nitrate"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label floating style="color:purple">Odor</ion-label>
+                    <ion-input [(ngModel)]="profile.odor"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item>
+                    <ion-label floating style="color:purple">Other</ion-label>
+                    <ion-input [(ngModel)]="profile.other"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </div>
+    <div style="border: 1px solid purple">
+
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label floating style="color:purple">City or Well</ion-label>
+                    <ion-input [(ngModel)]="profile.city_well"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item>
+                    <ion-label floating style="color:purple">Home or Business</ion-label>
+                    <ion-input [(ngModel)]="profile.homeORbusiness"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label floating style="color:purple"># Users</ion-label>
+                    <ion-input [(ngModel)]="profile.numberUsers"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item>
+                    <ion-label floating style="color:purple">Drinking Water</ion-label>
+                    <ion-input [(ngModel)]="profile.drinkingWater"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label floating style="color:purple">Equipment Install</ion-label>
+                    <ion-input [(ngModel)]="profile.equip_Installed"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item>
+                    <ion-label floating style="color:purple">Equipment Replacement</ion-label>
+                    <ion-input [(ngModel)]="profile.equip_Replcd"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label floating style="color:purple">Current Supplier</ion-label>
+                    <ion-input [(ngModel)]="profile.currentSupplier"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item no-lines style="margin-top:25px">
+                    <ion-label style="color:purple">Residential</ion-label>
+                    <ion-checkbox [(ngModel)]="profile.residential"></ion-checkbox>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row style="margin-bottom:5px">
+            <ion-item>
+                <ion-label floating style="color:purple">Comment</ion-label>
+                <ion-input [(ngModel)]="profile.comment"></ion-input>
+            </ion-item>
+        </ion-row>
+
+    </div>
+    <button ion-button block (click)="saveButton()">Save Profile</button>
+</ion-content>

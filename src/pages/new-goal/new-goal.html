@@ -1,0 +1,76 @@
+<!--
+  Generated template for the NewGoalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{customer.firstName}} {{customer.lastName}}'s New Goal</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-item>
+        <ion-label floating style="color: purple">First</ion-label>
+        <ion-input disabled="true" value="{{customer.firstName}}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label floating style="color: purple">Last</ion-label>
+        <ion-input disabled="true" value="{{customer.lastName}}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label style="color: purple">Cus ID:</ion-label>
+        <ion-input disabled="true" value="{{customer.customerID}}"></ion-input>
+    </ion-item>
+
+    <ion-row style="margin-top: -10px; width:100%" #test>
+        <ion-item no-lines>
+            <h1>Select a goal type</h1>
+            <ion-scroll scrollX="true" scroll-avatar>
+                <!-- <button ion-button (click)="newGoalButton()">New Goal Type</button> -->
+                <button ion-button outline *ngFor="let item of goalTypes" class="scroll-item" (click)="selectGoalType(item)">{{item.typeName}}</button>
+                <!-- <button ion-button (click)="newGoalButton()" style="margin-left:-3px">New Goal Type</button> -->
+            </ion-scroll>
+        </ion-item>
+    </ion-row>
+    <div style="margin-top: -55px">
+        <ion-row>
+            <ion-col col-12>
+                <ion-item>
+                    <ion-label floating style="color: purple">Goal Name</ion-label>
+                    <ion-input [(ngModel)]="newGTName "></ion-input>
+                </ion-item>
+            </ion-col>
+            <!-- <ion-col col-6 style="width:125%">
+                <p>Select a department</p>
+                <ion-select placeholder="Select One" [(ngModel)]="newGTDep">
+                    <ion-option value="CRS">CSR</ion-option>
+                    <ion-option value="Sales">Sales</ion-option>
+                    <ion-option value="RSR">RSR</ion-option>
+                    <ion-option value="SSR">SSR</ion-option>
+                    <ion-option value="BW Sales">BW Sales</ion-option>
+                    <ion-option value="System Sales">System Sales</ion-option>
+                    <ion-option value="All Sales">All Sales</ion-option>
+                </ion-select>
+
+            </ion-col> -->
+        </ion-row>
+        <ion-row>
+            <ion-item>
+                <p style="color: purple">Goal Description</p>
+                <textarea [(ngModel)]="newGTDesc" style="border:1px solid black; height: 175px; width: 100%"></textarea>
+            </ion-item>
+        </ion-row>
+    </div>
+    <ion-item *ngIf="newGoalBool != false">
+        <ion-label floating>Name Your New Goal Type</ion-label>
+        <ion-input [(ngModel)]="selectedGoalType"></ion-input>
+    </ion-item>
+    <button style="margin-top: 25px;" ion-button block color="secondary" (click)="confirmButton()">Confirm</button>
+</ion-content>

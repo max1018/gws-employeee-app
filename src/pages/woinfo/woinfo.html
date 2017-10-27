@@ -1,0 +1,272 @@
+<!--
+  Generated template for the WoinfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{currentWO.woName}}'s WO</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showActionSheet()">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+
+</ion-header>
+
+
+<ion-content>
+  <ion-row>
+    <p style="margin-left:33%;margin-top:-2px"><strong>Customer ID: </strong>{{currentCustomer.customerID}}</p>
+  </ion-row>
+  <ion-row>
+    <p style="margin-left:25%; margin-top:-15px"><strong>OrderNumber: </strong>{{currentWO.orderNumber}}</p>
+  </ion-row >
+  <ion-row style="margin-top:-15px">
+    <ion-col *ngIf="!currentWO.customer.autopay">
+      <ion-badge>
+        On Site Payment
+      </ion-badge>
+    </ion-col>
+    <ion-col *ngIf="currentWO.customer.autopay">
+      <ion-badge>
+        On Account Payment
+      </ion-badge>
+    </ion-col>
+    <ion-col *ngIf="currentWO.category== 'delivery'">
+      <ion-badge color="warning">
+        Drop-Off
+      </ion-badge>
+    </ion-col>
+    <ion-col *ngIf="currentWO.category== 'Service'">
+      <ion-badge color="secondary">
+        Service
+      </ion-badge>
+    </ion-col>
+  </ion-row>
+  <!-- <ion-row><p *ngIf="currentWO.customer.autopay" style="margin-left:25%; margin-top:-15px"><strong>Payment: </strong>Will Be Invoiced</p></ion-row> -->
+
+
+  <ion-row style="margin-top:-5px">
+    <ion-item>
+      <ion-label style="color:purple" floating>Firstname</ion-label>
+      <ion-input [(ngModel)]="currentCustomer.firstName"></ion-input>
+    </ion-item>
+  </ion-row>
+  <ion-row>
+    <ion-item>
+      <ion-label style="color:purple" floating>Lastname</ion-label>
+      <ion-input [(ngModel)]="currentCustomer.lastName"></ion-input>
+    </ion-item>
+  </ion-row>
+  <ion-row>
+    <ion-item>
+      <ion-label style="color:purple" floating>Address</ion-label>
+      <ion-input [(ngModel)]="currentWO.woAddress"></ion-input>
+    </ion-item>
+  </ion-row>
+  <ion-row>
+    <ion-item>
+      <ion-label style="color:purple" floating>City</ion-label>
+      <ion-input [(ngModel)]="currentCustomer.city"></ion-input>
+    </ion-item>
+  </ion-row>
+  <ion-row>
+    <ion-item>
+      <p style="color:purple">Phone</p>
+      <p><a href="tel: +1{{currentCustomer.phone}}">{{currentCustomer.phone}}</a></p>
+    </ion-item>
+  </ion-row>
+  <ion-row>
+    <ion-item>
+      <ion-label style="color:purple">Date</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MMM DD YYYY" [(ngModel)]="newDate"></ion-datetime>
+    </ion-item>
+  </ion-row>
+  <ion-row>
+    <ion-item>
+      <ion-label style="color:purple" floating>Email</ion-label>
+      <ion-input [(ngModel)]="currentCustomer.email"></ion-input>
+    </ion-item>
+  </ion-row>
+  <ion-row>
+    <ion-item class="item item-text-wrap">
+      <ion-label style='color: purple' floating>Instructions</ion-label>
+      <ion-textarea type="text" [(ngModel)]="currentWO['instructions']" rows="5"></ion-textarea>
+    </ion-item>
+  </ion-row>
+
+  <ion-row style="margin-top:10px; padding-bottom:10px;">
+    <ion-card (click)="printHey()" style="border:1px grey ridge">
+      <ion-card-header style="font-size:large; text-decoration:bold">
+        Estimated Distance and Time:
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col col-2>
+            <h1 style="color:green">{{travelDistance}}</h1>
+          </ion-col>
+          <ion-col col-3 style="margin-left: -23px">
+            <h1> miles</h1>
+          </ion-col>
+          <ion-col col-2 style="margin-left: 30px">
+            <h1>{{travelTime}}</h1>
+          </ion-col>
+          <ion-col col-3 style="margin-left: -21px">
+            <h1> mins</h1>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <a href="http://maps.google.com/?q=1200 Pennsylvania Ave SE, Washington, District of Columbia, 20003"><button ion-button icon-right clear style="width:100%; color:black"> Get Directions <ion-icon name="car"></ion-icon></button></a>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+  </ion-row>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-row>
+        <ion-col col-10>
+          <h1>Equipment</h1>
+        </ion-col>
+        <ion-col col-2>
+          <button ion-button clear icon-only (click)="addProduct()"><ion-icon name="add" style="margin-top:-20px" ></ion-icon></button>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-list padding>
+      <button ion-item block *ngFor="let item of equipment" style="border:1px solid lightgrey">
+      <ion-row>
+        <ion-col col-8>
+          <p style="color:black">{{item.description}}</p>
+        </ion-col>
+
+        <ion-col col-4 *ngIf="item.status == 'PU'">
+          <ion-badge color="dark">
+            Purchased
+          </ion-badge>
+        </ion-col>
+        <ion-col col-4 *ngIf="item.status != 'PU'">
+          <ion-badge color="dark">
+            Leased
+          </ion-badge>
+        </ion-col>
+
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p style="color:black"><strong>Brand:</strong> {{item.brand}}</p>
+        </ion-col>
+        <ion-col>
+          <p style="color:black"><strong>Install Date:</strong> {{item.installDate}}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p style="color:black"><strong>Serial #:</strong> {{item.serialNum}}</p>
+        </ion-col>
+        <ion-col>
+                    <p style="color:black"><strong>Model:</strong> {{item.model}}</p>
+        </ion-col>
+      </ion-row>
+    </button>
+      <ion-item>
+        <h1 *ngIf="equipment.length == 0" style="text-align:center"><strong>No Equipment</strong></h1>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+
+
+  <!-- <ion-row>
+  <ion-col col-10>
+    <h2>Items</h2>
+  </ion-col>
+  <ion-col col-2>
+            <button ion-button clear icon-only><ion-icon name="add" style="margin-top:-20px"></ion-icon></button>
+  </ion-col>
+  <ion-row style="background:purple; border-radius:10px; width:100%"></ion-row>
+</ion-row>
+<ion-list>
+    <button ion-item block *ngFor="let item of items"></button>
+    <ion-item>
+      <h1 *ngIf="items.length == 0" style="text-align:center"> <strong>No Items</strong></h1>
+    </ion-item>
+</ion-list> -->
+
+  <ion-card>
+    <ion-card-header>
+      <ion-row>
+        <ion-col col-10>
+          <h1>Items</h1>
+        </ion-col>
+        <ion-col col-2>
+          <button ion-button clear icon-only (click)="addItem()"><ion-icon name="add" style="margin-top:-20px" ></ion-icon></button>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-list padding>
+      <button ion-item block *ngFor="let item of items">
+      <ion-row>
+        <p style="color:black">{{item.description}}</p>
+      </ion-row>
+      <ion-row>
+        <!-- <ion-col>
+          <p style="color:black"><strong>Brand:</strong> {{item.brand}}</p>
+        </ion-col> -->
+        <ion-col>
+          <p style="color:black"><strong>Price:</strong> ${{item.unitPrice}}</p>
+        </ion-col>
+        <ion-col>
+          <p style="color:black"><strong>Qty:</strong> x{{item.quantity}}</p>
+        </ion-col>
+      </ion-row>
+    </button>
+      <ion-item *ngIf="items.length == 0">
+        <h1 style="text-align:center"><strong>No Items</strong></h1>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <!-- <div style="text-align:center">
+  <ion-row><h5>Total Mat'l: ${{totalPrice}}</h5></ion-row>
+  <ion-row><h5>Tax: ${{totalTax}}</h5></ion-row>
+  <ion-row><h5>Labor: $0.00</h5></ion-row>
+  <ion-row><h5>Service Call: $0.00</h5></ion-row>
+  <ion-row><h5>Total: $0.00</h5></ion-row>
+</div> -->
+
+  <ion-card style="border: -30px grey ridge">
+    <ion-card-header> Totals</ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <h2>Total Mat'l: ${{totalPrice}}</h2>
+      </ion-row>
+      <ion-row>
+        <h2>Tax: ${{totalTax}}</h2>
+      </ion-row>
+      <ion-row>
+        <h2>Labor: $0.00</h2>
+      </ion-row>
+      <ion-row>
+        <h2>Service Call: $0.00</h2>
+      </ion-row>
+      <ion-row>
+        <h2>Total: $0.00</h2>
+      </ion-row>
+      <ion-row style="border-top:1px lightgrey solid; "><button style="background-color:white; color:#488aff;width:100%" ion-button black (click)="scrollToTop()">Calculate Bill</button></ion-row>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+
+  <!-- <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MMM DD YYYY" [(ngModel)]="newDate"></ion-datetime>                             -->
+
+</ion-content>

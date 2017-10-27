@@ -1,0 +1,31 @@
+<!--
+  Generated template for the SignaturePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>signature</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div style="border:1px solid">
+        <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+    </div>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <button ion-button (click)="clearSign()" block>Clear</button>
+            </ion-col>
+            <ion-col>
+                <button ion-button (click)="sendVal()" block>Save</button>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

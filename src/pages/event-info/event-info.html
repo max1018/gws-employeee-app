@@ -1,0 +1,101 @@
+<!--
+  Generated template for the EventInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Event Detail </ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+
+    <ion-card >
+        <ion-card-header style="width:100%; font-size:30px; text-align:center">
+            {{currentEvent.customer.firstName}} {{currentEvent.customer.lastName}}'s {{eventDetails.eventName}}
+        </ion-card-header>
+        <ion-card-content>
+            <ion-item >
+                <ion-label style="color:purple">Address:</ion-label>
+                <ion-input readonly="true" style="margin-left:-20px" [ngModel]="currentEvent.customer.address"></ion-input>
+            </ion-item>
+            <ion-item >
+                <label style="color:purple">Phone:</label>
+                <a href="tel: +1{{currentEvent.customer.phone}}">{{currentEvent.customer.phone}}</a>
+            </ion-item>
+            <ion-item >
+                <label style="color:purple">Email:</label>
+                <a href="mailto: {{currentEvent.customer.email}}">{{currentEvent.customer.email}}</a>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+    <!-- <ion-list> -->
+    <!-- <ion-item>
+        <h1 style="color:purple">{{currentEvent.customer.firstName}} {{currentEvent.customer.lastName}}</h1>
+        <div>
+            <p style="margin-top: 5%">Address: {{currentEvent.customer.address}}</p>
+            <p style="margin-top: 5%">Phone:
+                <a href="tel: +1{{currentEvent.customer.phone}}">{{currentEvent.customer.phone}}</a>
+            </p>
+            <p style="margin-top: 5%">Email:
+                <a href="mailto: {{currentEvent.customer.email}}">{{currentEvent.customer.email}}</a>
+            </p>
+        </div>
+    </ion-item> -->
+
+    <ion-card>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-6>
+                    <ion-item>
+                        <ion-label floating style="font-size:larger; color:purple">Date Expected</ion-label>
+                        <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MMM DD YYYY" [(ngModel)]="newDate"></ion-datetime>
+                    </ion-item>
+                    <!-- <ion-row><input style="color:purple" value="Date Expected:" style="border: none;"></ion-row>
+                    <ion-row>
+                      <! <input type="date" [ngModel]="currentEvent.event.dateExpected | date:'yyyy-MM-dd' " style="border: none;">  -->
+                    <!-- <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MMM DD YYYY" [(ngModel)]="newDate"></ion-datetime>  -->
+                    <!-- </ion-row> -->
+                </ion-col>
+                <ion-col col-6>
+                    <ion-row>
+                        <ion-item>
+                            <ion-label floating style="font-size:larger; color: purple">Event Guide</ion-label>
+                            <ion-input [ngModel]="currentEvent.event.eventGuide"></ion-input>
+                        </ion-item>
+                    </ion-row>
+                    <ion-row><button clear ion-button icon-only style="height: 25px; width: 60px" (click)="switchGuidesButton()"><ion-icon name="swap"></ion-icon></button></ion-row>
+                    <!-- <ion-row><input value="Event Guide" style="border: none;"></ion-row>
+                    <ion-row><input  style="border: none;"></ion-row> -->
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+    </ion-card>
+
+    <ion-card >
+        <ion-card-header>
+            Notes
+        </ion-card-header>
+        <ion-card-content >
+                <textarea rows=6 style="width: 100%;" [(ngModel)]="currentEvent.event.notes"></textarea>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-item style="margin-top:-10px;">
+        <ion-row>
+            <ion-col col-6>
+                <button clear ion-button block (click)="completeButton()">Mark Completed</button>
+            </ion-col>
+            <ion-col col-6>
+                <button clear ion-button block (click)="saveButton()">Save</button>
+            </ion-col>
+        </ion-row>
+    </ion-item>
+    <!-- </ion-list> -->
+</ion-content>
